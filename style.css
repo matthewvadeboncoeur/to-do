@@ -1,0 +1,49 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+.banner {
+    display: flex;
+    justify-content: center;
+    background-color: gray;
+}
+
+.banner h1 {
+    font-size: 3rem;
+    padding: 25px 0;
+    font-family: Verdana;
+}
+
+.input-group {
+    display: flex;
+    background-color: teal;
+    justify-content: center;
+    gap: 10px;
+    padding: 70px 0;
+}
+
+.long-input {
+    width: 400px;
+    font-size: 2rem;
+    font-family: sans-serif;
+}
+
+.input-group label {
+    font-size: 3.5rem;
+}
+
+.long-button {
+    background-color: rgb(150, 245, 162);
+    width: 80px;
+    font-size: 1.4rem;
+}
+
+.long-button:hover {
+    transition: all 0.3s ease;
+    cursor: pointer;
+    background-color: rgb(51, 236, 51);
+    width: 80px;
+    font-size: 1.7rem;
+}
