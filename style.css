@@ -47,3 +47,7 @@
     width: 80px;
     font-size: 1.7rem;
 }
+
+#all-tasks {
+    background-color: green;
+}
