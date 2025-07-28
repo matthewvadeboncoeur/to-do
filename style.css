@@ -7,7 +7,7 @@
 .banner {
     display: flex;
     justify-content: center;
-    background-color: gray;
+    /* background-color: gray; */
 }
 
 .banner h1 {
@@ -18,7 +18,7 @@
 
 .input-group {
     display: flex;
-    background-color: teal;
+    /* background-color: teal; */
     justify-content: center;
     gap: 10px;
     padding: 70px 0;
@@ -49,5 +49,31 @@
 }
 
 #all-tasks {
-    background-color: green;
+    /* background-color: lightcyan; */
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: 30%;
+    gap: 6px;
+}
+
+#all-tasks li {
+    display: flex;
+    /* background-color: red; */
+    font-size: 1.9rem;
+    font-family: sans-serif;
+    justify-content: space-between;
+    align-items: center;
+    width: 60%;
+}
+
+.close {
+    font-size: 2rem;
+}
+
+.close:hover {
+    transition: all 0.3s ease;
+    cursor: pointer;
 }
