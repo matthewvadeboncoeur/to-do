@@ -24,6 +24,7 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 
+// when the user signup, he should be logged in after automatically too
 
 app.post('/signup', async (req, res) => {
     try {
@@ -35,7 +36,10 @@ app.post('/signup', async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 10)
         const newUser = new User({username, password: hashedPassword})
         await newUser.save()
-        res.status(201).json({message: 'User created successfully!'})
+        const token = jwt.sign(
+            { userId: newUser._id, username: newUser.username },
+             'SECRET_KEY');
+        res.status(201).json({ message: 'User created successfully!', token });
 
     }   catch (err) {
         res.status(500).json({message: 'Error creating user', error: err})
@@ -54,7 +58,9 @@ app.post('/login', async (req, res) => {
         if (!isMatch) {
             return res.status(400).json({message: 'Invalid username or password'})
         }
-        const token = jwt.sign({userId: user._id}, 'SECRET_KEY')
+        const token = jwt.sign(
+            { userId: user._id, username: user.username },
+             'SECRET_KEY');
         res.json({message: 'Login successful!', token})
 
     } catch (err) {
