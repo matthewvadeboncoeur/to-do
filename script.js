@@ -32,7 +32,7 @@ function userSignup() {
     if (username === '' || password === '')
         return;
 
-    fetch('http://localhost:3000/signup', {
+    fetch('https://to-do-2amw.onrender.com/signup', {
         method: 'POST', headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({'username': username, 'password': password})
     })
@@ -57,7 +57,7 @@ function userLogin() {
     if (username === '' || password === '')
         return;
 
-    fetch('http://localhost:3000/login', {
+    fetch('https://to-do-2amw.onrender.com/login', {
         method: 'POST', headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({'username': username, 'password': password})
     })
@@ -88,7 +88,7 @@ function load_tasks() {
     if (!token) {
         return;
     }
-    fetch('http://localhost:3000/tasks', {
+    fetch('https://to-do-2amw.onrender.com/tasks', {
         headers: {
             'Authorization': `Bearer ${token}`
         }
@@ -126,7 +126,7 @@ function add_task() {
     var input_value = document.getElementById("long-input").value;
     if (input_value == "") return;
 
-    fetch('http://localhost:3000/tasks', {
+    fetch('https://to-do-2amw.onrender.com/tasks', {
         method: 'POST', headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
@@ -167,7 +167,7 @@ function remove_task() {
     const token = localStorage.getItem('token')
     const li = this.parentElement;
     const taskId = li.getAttribute('data-id')
-    fetch(`http://localhost:3000/tasks/${taskId}` , {
+    fetch(`https://to-do-2amw.onrender.com/tasks/${taskId}` , {
         method: 'DELETE',
         headers: {'Authorization': `Bearer ${token}`}
     })
