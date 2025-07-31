@@ -1,10 +1,9 @@
+require('dotenv').config();
 const express = require('express')
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-mongoose.connect('mongodb+srv://vadebonm:IUQb55CKhWI3uIqK@cluster0.ovuczhl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
-    .then(() => console.log('✅ Connected to MongoDB Atlas'))
-    .catch(err => console.error('❌ MongoDB connection error:', err));
+mongoose.connect(process.env.MONGO_URI)
 
 const taskSchema = new mongoose.Schema({
     text: {type: String, required: true},
@@ -38,7 +37,7 @@ app.post('/signup', async (req, res) => {
         await newUser.save()
         const token = jwt.sign(
             { userId: newUser._id, username: newUser.username },
-             'SECRET_KEY');
+            process.env.SECRET_KEY);
         res.status(201).json({ message: 'User created successfully!', token });
 
     }   catch (err) {
@@ -60,7 +59,7 @@ app.post('/login', async (req, res) => {
         }
         const token = jwt.sign(
             { userId: user._id, username: user.username },
-             'SECRET_KEY');
+            process.env.SECRET_KEY);
         res.json({message: 'Login successful!', token})
 
     } catch (err) {
@@ -76,7 +75,7 @@ function authMiddleware(req, res, next) {
     }
     const token = authHeader.split(' ')[1]
     try {
-        const decoded = jwt.verify(token, 'SECRET_KEY')
+        const decoded = jwt.verify(token, process.env.SECRET_KEY)
         req.userId = decoded.userId
         next()
     } catch (err) {
